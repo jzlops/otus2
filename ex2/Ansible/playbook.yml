@@ -1,0 +1,7 @@
+---
+- name: Install NGNIX
+  hosts: web
+  become: yes
+  
+  roles:
+    - nginx

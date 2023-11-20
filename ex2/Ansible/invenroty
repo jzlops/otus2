@@ -1,0 +1,5 @@
+[web]
+nginx ansible_host=127.0.0.1
+
+[test]
+nginx ansible_host=127.0.0.1

@@ -1,0 +1,4 @@
+---
+ansible_port :             2222 
+ansible_user :             vagrant
+ansible_private_key :      "/.vagrant/machines/nginx/virtualbox/private_key"
