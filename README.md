@@ -4,3 +4,4 @@
 | ------ | ------ |
 | Vagrant | [ex1] https://github.com/jzlops/otus2/tree/master/ex1 |
 | Ansible | [ex2] https://github.com/jzlops/otus2/tree/master/ex2 |
+| Raid / mdadm | [ex2] https://github.com/jzlops/otus2/tree/master/ex3 |
