@@ -1,0 +1,42 @@
+
+GLOBAL_VMNAME = "otuslvm"
+#GLOBAL_BOXNAME = "bento/oracle-8"
+GLOBAL_BOXNAME = "centos/7"
+GLOBAL_BOXVERSION = "1804.02"
+GLOBAL_DISK_PATH = "/otus2/vms/" + GLOBAL_VMNAME + "/"
+GLOBAL_BASECONF_SCRIPT = "scripts/baseconf.sh"
+#GLOBAL_RAIDINIT_SCRIPT = "scripts/raidinit.sh"
+
+Vagrant.configure("2") do |config|
+    config.vm.box = GLOBAL_BOXNAME
+    config.vm.box_version = GLOBAL_BOXVERSION
+    config.vm.hostname = GLOBAL_VMNAME
+    config.vm.network "private_network", ip: "192.168.56.152"
+    config.vm.define  GLOBAL_VMNAME
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        vb.name = GLOBAL_VMNAME
+        
+        vb.customize ["storagectl", :id, "--name", "SATA", "--add", "sata" ]
+
+        DISK = (GLOBAL_DISK_PATH + "sata1.vdi")
+        vb.customize ['createhd', '--filename', DISK, '--variant', 'Fixed', '--size', "10240"]
+        vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', DISK]
+        
+        DISK = (GLOBAL_DISK_PATH + "sata2.vdi")
+        vb.customize ['createhd', '--filename', DISK, '--variant', 'Fixed', '--size', "2048"]
+        vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', DISK]
+
+        DISK = (GLOBAL_DISK_PATH + "sata3.vdi")
+        vb.customize ['createhd', '--filename', DISK, '--variant', 'Fixed', '--size', "1024"]
+        vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 3, '--device', 0, '--type', 'hdd', '--medium', DISK]
+
+        DISK = (GLOBAL_DISK_PATH + "sata4.vdi")
+        vb.customize ['createhd', '--filename', DISK, '--variant', 'Fixed', '--size', "1024"]
+        vb.customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 4, '--device', 0, '--type', 'hdd', '--medium', DISK]
+        
+    end
+    config.vm.provision "shell", path: GLOBAL_BASECONF_SCRIPT
+    # config.vm.provision "shell", path: GLOBAL_RAIDINIT_SCRIPT
+end
