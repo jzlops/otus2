@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+GLOBAL_VMNAME = "otuszfs"
+GLOBAL_BOXNAME = "bento/rockylinux-9"
+GLOBAL_DISK_PATH = "/otus2/vms/" + GLOBAL_VMNAME + "/"
+GLOBAL_BASECONF_SCRIPT = "scripts/baseconf.sh"
+GLOBAL_ZFSINIT_SCRIPT = "scripts/zfsinit.sh"
+
+Vagrant.configure("2") do |config|
+    config.vm.box = GLOBAL_BOXNAME
+    config.vm.hostname = GLOBAL_VMNAME
+    config.vm.network "private_network", ip: "192.168.56.155"
+    config.vm.define  GLOBAL_VMNAME
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        vb.name = GLOBAL_VMNAME
+
+        (1..8).each do |i|
+            DISK = (GLOBAL_DISK_PATH + "sata#{i}.vdi")
+            unless File.exist?(DISK)
+                vb.customize ['createhd', '--filename', DISK, '--variant', 'Fixed', '--size', "512"]
+            end
+            vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', i, '--device', 0, '--type', 'hdd', '--medium', DISK]
+        end
+        
+    end
+    config.vm.provision "shell", path: GLOBAL_BASECONF_SCRIPT
+#    config.vm.provision "shell", path: GLOBAL_ZFSINIT_SCRIPT
+end
