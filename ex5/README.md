@@ -10,3 +10,4 @@
 
 
 ![Alt text](ex5/zfs/screens/1-3.jpg)
+![Alt text](ex5/zfs/screens/4-6.jpg)
