@@ -8,4 +8,4 @@
 
 #### Ниже приведены срины выполнения ДЗ
 
-![Screenshot](/zfs/screens/11.jpg)
+![Screenshot](ex5/zfs/screens/11.jpg)
