@@ -9,5 +9,10 @@
 #### Ниже приведены срины выполнения ДЗ
 
 
-![Alt text](ex5/zfs/screens/1-3.jpg)
-![Alt text](ex5/zfs/screens/4-6.jpg)
+![Alt text](./zfs/screens/1-3.jpg)
+![Alt text](./zfs/screens/4-6.jpg)
+![Alt text](./zfs/screens/7-9.jpg)
+![Alt text](./zfs/screens/10.jpg)
+![Alt text](./zfs/screens/11.jpg)
+![Alt text](./zfs/screens/12.jpg)
+![Alt text](./zfs/screens/13-15.jpg)
