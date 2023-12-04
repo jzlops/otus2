@@ -8,4 +8,5 @@
 
 #### Ниже приведены срины выполнения ДЗ
 
-![Screenshot](ex5/zfs/screens/11.jpg)
+
+![Alt text](ex5/zfs/screens/1-3.jpg)
