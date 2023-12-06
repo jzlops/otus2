@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+
+GLOBAL_SERVER_NAME = "nfss" 
+GLOBAL_CLIENT_NAME = "nfsc"
+GLOBAL_BOXNAME = "centos/7"
+#GLOBAL_BOXNAME = "bento/oracle-8"
+GLOBAL_BASECONF_SCRIPT = "scripts/baseconf.sh"
+GLOBAL_NFS_CLIENT_INIT_SCRIPT = "scripts/nfs_client_init.sh"
+GLOBAL_NFS_SERVER_INIT_SCRIPT = "scripts/nfs_server_init.sh"
+Vagrant.configure("2") do |config|
+
+    config.vm.box = GLOBAL_BOXNAME
+    
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "512"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+    end
+    
+    config.vm.define "nfss" do |nfss|
+        nfss.vm.network "private_network", ip: "192.168.56.226",  virtualbox__intnet: "net1"
+        nfss.vm.hostname = GLOBAL_SERVER_NAME
+        nfss.vm.provision "shell", path: GLOBAL_BASECONF_SCRIPT
+        nfss.vm.provision "shell", path: GLOBAL_NFS_SERVER_INIT_SCRIPT
+    end
+    
+    config.vm.define "nfsc" do |nfsc|
+        nfsc.vm.network "private_network", ip: "192.168.56.227",  virtualbox__intnet: "net1"
+        nfsc.vm.hostname = GLOBAL_CLIENT_NAME
+        nfsc.vm.provision "shell", path: GLOBAL_BASECONF_SCRIPT
+        nfsc.vm.provision "shell", path: GLOBAL_NFS_CLIENT_INIT_SCRIPT
+    end
+end
