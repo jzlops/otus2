@@ -8,3 +8,4 @@
 | LVM | [ex4] https://github.com/jzlops/otus2/tree/master/ex4 |
 | ZFS | [ex5] https://github.com/jzlops/otus2/tree/master/ex5 |
 | NFS | [ex6] https://github.com/jzlops/otus2/tree/master/ex6 |
+| RPM | [ex7] https://github.com/jzlops/otus2/tree/master/ex7 |
