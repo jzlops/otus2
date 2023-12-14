@@ -9,3 +9,4 @@
 | ZFS | [ex5] https://github.com/jzlops/otus2/tree/master/ex5 |
 | NFS | [ex6] https://github.com/jzlops/otus2/tree/master/ex6 |
 | RPM | [ex7] https://github.com/jzlops/otus2/tree/master/ex7 |
+| Grub | [ex7] https://github.com/jzlops/otus2/tree/master/ex8 |

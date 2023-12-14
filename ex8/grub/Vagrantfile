@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+
+
+servers=[
+  {
+    :hostname => "ubnt",
+    :ip => "192.168.56.226",
+    :box => "bento/ubuntu-16.04",
+    :ram => 1024,
+    :cpu => 1
+  },
+  {
+    :hostname => "rhel",
+    :ip => "192.168.56.227",
+    :box => "ekko919/CentOS-8.x",
+    :ram => 1024,
+    :cpu => 1
+  }
+]
+
+Vagrant.configure("2") do |config|
+
+	servers.each do |machine|
+	
+		config.vm.define machine[:hostname] do |node|
+            node.vm.box = machine[:box]
+            node.vm.hostname = machine[:hostname]
+            node.vm.network "private_network", ip: machine[:ip], virtualbox__intnet: "net1"
+            node.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
+            end
+        end
+  
+    end
+end
