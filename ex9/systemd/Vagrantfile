@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby :
+GLOBAL_VMNAME = "systemd"
+GLOBAL_BOXNAME = "ekko919/CentOS-8.x"
+GLOBAL_BASECONF_SCRIPT = "scripts/baseconf.sh"
+GLOBAL_CUSTOMCONF_SCRIPT = "scripts/custom.sh"
+
+Vagrant.configure("2") do |config|
+    config.vm.box = GLOBAL_BOXNAME
+    config.vm.hostname = GLOBAL_VMNAME
+    config.vm.network "private_network", ip: "192.168.56.159"
+    config.vm.define  GLOBAL_VMNAME
+    config.vm.box_check_update = false
+    config.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--cpus", "1"]
+        vb.name = GLOBAL_VMNAME
+    end
+    config.vm.provision "file", source: "./files/watchlog.log", destination: "/tmp/watchlog.log"
+    config.vm.provision "file", source: "./files/watchlog.service", destination: "/tmp/watchlog.service"
+    config.vm.provision "file", source: "./files/watchlog.sh", destination: "/tmp/watchlog.sh"
+    config.vm.provision "file", source: "./files/watchlog.timer", destination: "/tmp/watchlog.timer"
+    config.vm.provision "file", source: "./files/watchlog", destination: "/tmp/watchlog"
+    config.vm.provision "file", source: "./files/spawn-fcgi", destination: "/tmp/spawn-fcgi"
+    config.vm.provision "file", source: "./files/spawn-fcgi.service", destination: "/tmp/spawn-fcgi.service"
+    config.vm.provision "file", source: "./files/httpd.service", destination: "/tmp/httpd.service"
+    config.vm.provision "file", source: "./files/httpd-first", destination: "/tmp/httpd-first"
+    config.vm.provision "file", source: "./files/httpd-second", destination: "/tmp/httpd-second"
+    config.vm.provision "file", source: "./files/first.conf", destination: "/tmp/first.conf"
+    config.vm.provision "file", source: "./files/second.conf", destination: "/tmp/second.conf"
+    config.vm.provision "shell", path: GLOBAL_BASECONF_SCRIPT
+    config.vm.provision "shell", path: GLOBAL_CUSTOMCONF_SCRIPT
+end
