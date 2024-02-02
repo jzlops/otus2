@@ -11,3 +11,4 @@
 | RPM | [ex7] https://github.com/jzlops/otus2/tree/master/ex7 |
 | Grub | [ex8] https://github.com/jzlops/otus2/tree/master/ex8 |
 | SystemD | [ex9] https://github.com/jzlops/otus2/tree/master/ex9 |
+| Bash | [ex10] https://github.com/jzlops/otus2/tree/master/ex10 |
