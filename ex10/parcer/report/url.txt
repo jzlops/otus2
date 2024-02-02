@@ -1,0 +1,11 @@
+count url
+364 http://feedparser.org/
+273 http://www.google.com/bot.html
+231 http://www.google.com/bot.html
+151 http://semicomplete.com/presentations/logstash-scale11x/
+108 http://www.FeedBurner.com
+106 http://help.yahoo.com/help/us/ysearch/slurp
+102 http://www.google.com/feedfetcher.html
+96 http://search.msn.com/msnbot.htm
+84 http://yandex.com/bots
+82 http://tt-rss.org/
